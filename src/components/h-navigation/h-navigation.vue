@@ -52,11 +52,14 @@ export default {
   display: flex;
   justify-content: space-between;
   padding: 20rpx 40rpx;
-  margin-bottom: 30rpx;
   color: #000000;
+  margin-bottom: 20rpx;
   font-weight: 700;
   view {
+    flex: 1;
+    text-align: center;
     position: relative;
+    font-size: 28rpx;
     &.select {
       font-size: 32rpx;
     }

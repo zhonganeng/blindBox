@@ -1,7 +1,8 @@
 <template>
   <view class="content">
     <view v-for="item in list"
-          :key="item.id">{{item.text}}</view>
+          :key="item.id"
+          @click="clickBottom(item)">{{item.text}}</view>
   </view>
 </template>
 
@@ -16,14 +17,21 @@ export default {
         },
         {
           id: 2,
-          text: "联系客服",
+          text: "联系我们",
+          describe: "点击复制我的微信：zhongaaneng",
         },
         {
           id: 3,
           text: "投诉举报",
+          describe: "点击复制我的微信：zhongaaneng",
         },
       ],
     };
+  },
+  methods: {
+    clickBottom(id) {
+      this.$emit("clickBottom", id);
+    },
   },
 };
 </script>
@@ -33,8 +41,9 @@ export default {
   display: flex;
   justify-content: space-between;
   justify-items: center;
-  view {
-    border-left: 2px solid #000;
-  }
+  width: 50%;
+  margin: 40rpx auto;
+  font-size: 24rpx;
+  color: #000;
 }
 </style>

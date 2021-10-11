@@ -46,7 +46,7 @@ export default {};
   background-image: url("@/static/hezi.png");
   background-repeat: no-repeat;
   background-position: center;
-  opacity: 0.8;
+  // opacity: 0.8;
   .btnBox {
     height: 100%;
     display: flex;

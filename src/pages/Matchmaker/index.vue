@@ -1,6 +1,6 @@
 <template>
   <view class="content">
-		<h-status-top />
+		<h-status-top :title="data.title" />
 		
     <h-navigation :isSelect="2" />
     <view class="body">
@@ -40,7 +40,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
+	computed: {
+		...mapState({
+			// 箭头函数可使代码更简练
+			data: state => state.app.data
+		})
+	},
   data() {
     return {
       swiperList: [

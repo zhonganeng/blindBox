@@ -4,12 +4,19 @@
       <!-- 这里是状态栏 -->
     </view>
     <view class="title">
-      单身盲盒（成都东软校园）
+      {{title!==""?title: "单身盲盒"}}
     </view>
   </view>
 </template>
 
 <script>
+	export default {
+		props: {
+			title: {
+				type: String
+			}
+		}
+	}
 </script>
 
 <style lang="scss">

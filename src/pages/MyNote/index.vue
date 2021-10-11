@@ -1,6 +1,6 @@
 <template>
   <view class="content">
-		<h-status-top />
+		<h-status-top :title="data.title" />
     <h-navigation :isSelect="0" />
     <view class="body">
       <switchTab />
@@ -11,8 +11,15 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import switchTab from "./components/switch-tab";
 export default {
+	computed: {
+		...mapState({
+			// 箭头函数可使代码更简练
+			data: state => state.app.data
+		})
+	},
   components: {
     switchTab,
   },

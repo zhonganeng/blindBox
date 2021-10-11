@@ -11,7 +11,7 @@
     <view :class="{
         select: isSelect==2
       }"
-          @click="linkPage(2)">摆摊赚钱</view>
+          @click="linkPage(2)">成为红娘</view>
   </view>
 </template>
 

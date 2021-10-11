@@ -22,27 +22,30 @@
 			}
 		}
 	],
-	"tabBar": {
-		"list": [
-			{
-				"pagePath": "pages/index/index",
-				"text": "抽个对象"
-			},
-			{
-				"pagePath": "pages/MyNote/index",
-				"text": "我的纸条"
-			},
-			{
-				"pagePath": "pages/Matchmaker/index",
-				"text": "摆摊赚钱"
-			}
-		]
-	},
+	// "tabBar": {
+	// 	"list": [
+	// 		{
+	// 			"pagePath": "pages/index/index",
+	// 			"text": "抽个对象"
+	// 		},
+	// 		{
+	// 			"pagePath": "pages/MyNote/index",
+	// 			"text": "我的纸条"
+	// 		},
+	// 		{
+	// 			"pagePath": "pages/Matchmaker/index",
+	// 			"text": "摆摊赚钱"
+	// 		}
+	// 	]
+	// },
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+		// #ifdef MP-WEIXIN
+		,
 		"navigationStyle": "custom"
+		// #endif
 	}
 }

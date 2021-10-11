@@ -1,5 +1,7 @@
 <template>
   <view class="content">
+		<h-status-top />
+		
     <h-navigation :isSelect="2" />
     <view class="body">
       <u-swiper :list="swiperList"

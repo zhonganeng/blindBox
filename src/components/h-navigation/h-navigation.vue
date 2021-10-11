@@ -36,11 +36,8 @@ export default {
       } else if (i === 2) {
         url = "/pages/Matchmaker/index";
       }
-      uni.switchTab({
+      uni.redirectTo({
         url,
-        fail: function (err) {
-          console.log(err);
-        },
       });
     },
   },

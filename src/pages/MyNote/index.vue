@@ -1,5 +1,6 @@
 <template>
   <view class="content">
+		<h-status-top />
     <h-navigation :isSelect="0" />
     <view class="body">
       <switchTab />

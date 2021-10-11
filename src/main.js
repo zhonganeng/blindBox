@@ -4,6 +4,8 @@ import uView from "uview-ui";
 Vue.use(uView);
 Vue.config.productionTip = false;
 
+import "./utils/mixin/index.js"
+
 App.mpType = "app";
 
 const app = new Vue({

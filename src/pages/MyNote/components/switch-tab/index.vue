@@ -31,7 +31,12 @@ export default {
   display: flex;
   padding: 6rpx;
   height: 76rpx;
-  line-height: 76rpx;
+	/* #ifndef MP-WEIXIN */
+	line-height: 76rpx;
+	/* #endif */
+  /* #ifdef MP-WEIXIN */
+  line-height: 54rpx;
+  /* #endif */
   border: 2rpx solid #000;
   border-radius: 6rpx;
   color: #000;

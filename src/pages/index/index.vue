@@ -1,5 +1,7 @@
 <template>
   <view class="content">
+    <h-status-top />
+
     <h-navigation :isSelect="1" />
     <view class="body">
       <u-swiper :list="swiperList"
@@ -69,7 +71,7 @@ export default {
   },
   data() {
     return {
-      popupShow: true,
+      popupShow: false,
       popupItem: {
         id: 1,
         text: null,
@@ -90,38 +92,58 @@ export default {
       ],
     };
   },
-  onLoad() {},
+  onLoad(options) {
+    console.log(options);
+  },
   methods: {
     clickBottom(item) {
       this.popupShow = true;
       this.popupItem = item;
     },
     copyWX() {
+      // #ifdef H5
       const text = document.createElement("textarea");
       text.value = "zhongaaneng";
       document.body.appendChild(text);
       text.select();
       document.execCommand("Copy");
       text.remove();
-
       //复制成功的回调函数
       uni.showToast({
         //提示
         title: "复制成功",
       });
+      // #endif
+
+      // #ifdef MP-WEIXIN
+      wx.setClipboardData({
+        data: "zhongaaneng",
+        success: function (res) {
+          wx.getClipboardData({
+            success: function (res) {
+              wx.showToast({
+                title: "复制成功",
+              });
+            },
+          });
+        },
+      });
+      // #endif
     },
   },
 };
 </script>
 
-<style scoped lang="scss">
+<style>
 page {
   height: 100vh;
-  background-image: url("@/static/bg.png");
+  background-image: url(https://vkceyugu.cdn.bspapp.com/VKCEYUGU-f809b672-cc4f-4e9a-8799-4167a19755f7/97e9d2f8-f275-46ce-9d53-6aa9e68eca23.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
+</style>
+<style scoped lang="scss">
 .content {
   .body {
     padding: 0 20rpx;

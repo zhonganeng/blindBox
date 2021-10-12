@@ -20,18 +20,26 @@
       </view>
     </view> -->
     <view class="btnBox">
-      <u-button style="background-color: #000;color: #fff;margin-bottom:40rpx;"
-                :ripple="true"
-                size="medium">放入1张纸条</u-button>
-      <u-button style="background-color: #000;color: #fff;margin-bottom:40rpx;"
-                :ripple="true"
-                size="medium">抽取1张纸条</u-button>
+      <button style="background-color: #000;color: #fff;width: 40%;height: 60rpx;line-height: 60rpx;"
+								size="mini"
+								hover-class="okBtn"
+                :ripple="true" @click="clickBtn(1)">放入1张纸条</button>
+			<button style="background-color: #000;color: #fff;width: 40%;height: 60rpx;line-height: 60rpx;margin-top: 30rpx;"
+								size="mini"
+								hover-class="okBtn"
+								:ripple="true" @click="clickBtn(2)">抽取1张纸条</button>
     </view>
   </view>
 </template>
 
 <script>
-export default {};
+export default {
+	methods: {
+		clickBtn(index){
+			this.$emit("clickBtn",index)
+		}
+	}
+};
 </script>
 
 <style scoped lang="scss">
@@ -39,20 +47,24 @@ export default {};
   position: relative;
   // padding: 40rpx 20rpx;
   border-radius: 20rpx;
-  width: 600rpx;
-  height: 600rpx;
+  width: 584rpx;
+  height: 584rpx;
   margin: 0 auto;
   margin-top: 40rpx;
   background-image: url("@/static/hezi.png");
   background-repeat: no-repeat;
   background-position: center;
-  // opacity: 0.8;
+	background-size: 100%;
   .btnBox {
     height: 100%;
+		padding-bottom: 40rpx;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
+		.okBtn{
+			background-color: #413e3e !important;
+		}
   }
   // .cover {
   //   width: 200rpx;

@@ -22,6 +22,24 @@
 			}
 		}
 	],
+	"subPackages": [
+		{
+			"root": "subpackages/webview",
+			"pages": [
+				{
+					"path": "index",
+					"style": {
+						"navigationBarTitleText": "脱单盲盒",
+						"enablePullDownRefresh": false,
+						"navigationStyle": "custom"
+					},
+					"globalStyle": {
+						"navigationStyle": "custom"
+					}
+				}
+			]
+		}
+	],
 	// "tabBar": {
 	// 	"list": [
 	// 		{

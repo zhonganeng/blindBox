@@ -8,12 +8,14 @@ const app = {
 			state.data = data;
 		},
 		setParameterId(state, data){
+			console.log("data:",data);
 			state.parameterId = data;
 		}
 	},
 	actions: {
 		async getNetData (context) {
 			const parameterId = context.state.parameterId;
+			console.log("parameterId:",parameterId);
 			 if(parameterId!==undefined){
 				 uni.showLoading({
 					 title: "玩命加载中"

@@ -21,6 +21,7 @@ export default {
   methods: {
     clickSwitch(i) {
       this.isSelect = i;
+			this.$emit("switchTab",i)
     },
   },
 };

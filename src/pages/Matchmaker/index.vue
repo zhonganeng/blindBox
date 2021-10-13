@@ -1,10 +1,12 @@
 <template>
-  <view class="content">
+  <view class="content" @click="copyWX('zhongaaneng')">
+		<view class="bgImg"></view>
 		<h-status-top :title="data.title" />
 		
     <h-navigation :isSelect="2" />
     <view class="body">
-      <u-swiper :list="swiperList"
+			<!-- <image src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-f809b672-cc4f-4e9a-8799-4167a19755f7/b1215314-9223-487e-94b6-8735788d3f46.png" mode="widthFix" style="width:100%"></image> -->
+      <!-- <u-swiper :list="swiperList"
                 border-radius="0"
                 mode="none"></u-swiper>
       <view style="padding: 40rpx 0;"
@@ -34,7 +36,7 @@
         </view>
       </view>
       <u-button style="background-color: #000;color:#fff;margin-top:40rpx;font-weight: 800;"
-                :ripple="true">9.9元成为红娘</u-button>
+                :ripple="true">9.9元成为红娘</u-button> -->
     </view>
   </view>
 </template>
@@ -59,14 +61,62 @@ export default {
     };
   },
   onLoad() {},
-  methods: {},
+  methods: {
+		copyWX(wxH) {
+			// #ifdef H5
+			const text = document.createElement('textarea');
+			text.value = wxH;
+			document.body.appendChild(text);
+			text.select();
+			document.execCommand('Copy');
+			text.remove();
+			//复制成功的回调函数
+			uni.showToast({
+				//提示
+				title: '复制成功'
+			});
+			// #endif
+		
+			// #ifdef MP-WEIXIN
+			wx.setClipboardData({
+				data: wxH,
+				success: function(res) {
+					wx.getClipboardData({
+						success: function(res) {
+							// wx.showToast({
+							// 	title: '复制成功'
+							// });
+						}
+					});
+				}
+			});
+			// #endif
+		}
+	},
 };
 </script>
 
 <style scoped lang="scss">
 .content {
-  .body {
-    padding: 0 20rpx;
+	height: 100vh;
+	position: relative;
+	.bgImg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		height: 3004rpx;
+		width: 100vw;
+		background: url(https://vkceyugu.cdn.bspapp.com/VKCEYUGU-f809b672-cc4f-4e9a-8799-4167a19755f7/936d16c9-bcab-4d7c-bb05-10b270bde004.png);
+		background-position: left top;
+		background-repeat: no-repeat;
+		background-size: 100% auto;
+		animation: animatedBackground 20s linear infinite;
+		animation-direction:alternate;
+		// /* hi 浏览器，使用你的GPU */
+		transform: translate3d(0, 0, 0);
+	}
+.body {
     .text {
       width: 92%;
       > view + view {

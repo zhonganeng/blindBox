@@ -3,7 +3,7 @@
 	"required": [],
 	"permission": {
 		"read": true,
-		"create": false,
+		"create": true,
 		"update": false,
 		"delete": false
 	},

@@ -1,5 +1,7 @@
 <template>
-  <view class="content">
+  <view class="content" :style="{
+		'backgroundImage': `url(${data.boxBgImg===''||data.boxBgImg===undefined ? '../../../static/hezi.png' : data.boxBgImg})`
+	}">
     <!-- <image src="@/static/nan.png"
            style="height: 160rpx;width:100%;borderRadius: 20rpx 20rpx 0 0;" />
     <view class="cover">
@@ -33,7 +35,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
+	computed: {
+		...mapState({
+			// 箭头函数可使代码更简练
+			data: state => state.app.data
+		})
+	},
 	methods: {
 		clickBtn(index){
 			this.$emit("clickBtn",index)
@@ -51,7 +60,6 @@ export default {
   height: 584rpx;
   margin: 0 auto;
   margin-top: 40rpx;
-  background-image: url("@/static/hezi.png");
   background-repeat: no-repeat;
   background-position: center;
 	background-size: 100%;

@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   data() {
     return {};
@@ -26,13 +27,19 @@ export default {
       default: 1,
     },
   },
+	computed: {
+		...mapState({
+			// 箭头函数可使代码更简练
+			parameterId: state => state.app.parameterId
+		})
+	},
   methods: {
     linkPage(i) {
       let url = "";
       if (i === 0) {
         url = "/pages/MyNote/index";
       } else if (i === 1) {
-        url = "/pages/index/index";
+        url = `/pages/index/index?id=${this.parameterId}`;
       } else if (i === 2) {
         url = "/pages/Matchmaker/index";
       }
@@ -48,7 +55,8 @@ export default {
 .content {
   display: flex;
   justify-content: space-between;
-  padding: 20rpx 40rpx;
+  padding: 60rpx 40rpx;
+	padding-bottom: 40rpx;
   color: #000000;
   margin-bottom: 20rpx;
   font-weight: 700;

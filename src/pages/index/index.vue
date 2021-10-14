@@ -8,52 +8,63 @@
 			<h-status-top :title="data.title" />
 			<h-navigation :isSelect="1" />
 			<view class="body">
-				<u-swiper :list="data.banner" v-if="data.banner.length" border-radius="20" indicator-pos="bottomLeft" interval="5000" @click="clickSwiper"></u-swiper>
+				<u-swiper :list="data.banner" v-if="data.banner.length" height="100rpx" mode="aspectFill" border-radius="20" indicator-pos="bottomLeft" interval="3000" @click="clickSwiper"></u-swiper>
 				<u-swiper :list="[{
 					id: 1,
 					image: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-f809b672-cc4f-4e9a-8799-4167a19755f7/4ee37e3b-6796-4a1c-9148-ce7cc44d9d4f.png'
-				}]" v-else border-radius="20" indicator-pos="bottomLeft" interval="5000" @click="clickSwiper"></u-swiper>
+				}]" height="100rpx" mode="aspectFill" v-else border-radius="20" indicator-pos="bottomLeft" interval="3000" @click="clickSwiper"></u-swiper>
 				<sava-take @clickBtn="clickBtn" />
 				<bottom-mess @clickBottom="clickBottom" />
 			</view>
-
-			<u-popup v-model="popupShow" mode="bottom" border-radius="28">
+			<u-popup v-model="popupShow" mode="bottom" border-radius="28" @close="showGuangGao = false;">
 				<view style="padding: 20rpx 40rpx;">
-					<view class="popupTitle">
-						<u-icon name="close" color="#000" size="28" @click="popupShow = false"></u-icon>
-						<view style="text-align: center;">
+					<template v-if="!showGuangGao">
+						<view class="popupTitle">
+							<u-icon name="close" color="#000" size="28" @click="popupShow = false"></u-icon>
+							<view style="text-align: center;">
+								<template v-if="popupItem.id !== 1">
+									<view class="title">保存二维码添加客服微信</view>
+									<view class="describe" style="font-size:24rpx;" @click="copyWX('zhongaaneng')">{{ popupItem.describe }}</view>
+								</template>
+								<template v-else>
+									<view class="title">{{ popupItem.text }}</view>
+								</template>
+							</view>
+							<view></view>
+						</view>
+						
+						<view class="popupContent">
 							<template v-if="popupItem.id !== 1">
-								<view class="title">长按二维码添加客服微信</view>
-								<view class="describe" style="font-size:24rpx;" @click="copyWX('zhongaaneng')">{{ popupItem.describe }}</view>
+								<image src="@/static/wx.jpg" style="width:300rpx;height:300rpx;margin:40rpx 0;" mode="aspectFit" @click="copyWX('zhongaaneng')" />
 							</template>
 							<template v-else>
-								<view class="title">{{ popupItem.text }}</view>
+								<view class="notice">
+									<view>这是一个盲盒交友游戏，你不知道会抽到谁的纸条，也不知道你的纸条将会被谁抽到。</view>
+									<view>如果您需放入纸条，建议您认真填写，并留下有效的联系方式，以便喜欢您的人能联系到您。为了让信息更加真实，抽放纸条时需分享到朋友圈，以提高参与门槛。</view>
+									<view>
+										温馨提示：所有纸条均来自网友，均属发布者自愿行为，我们无法保证所有纸条内容的真实性，
+										<text style="color: #f00;">在添加好友时，请一定要仔细甄别，切勿轻易转账以防被骗</text>
+										，本平台不承担任何法律责任。
+									</view>
+									<view>
+										<view><text style="color: #f00;">红娘须知：</text></view>
+										<view>避免失联，建议您添加我们微信好友</view>
+										<view>平台首页点底部“联系我们”加好友！！！</view>
+									</view>
+								</view>
 							</template>
 						</view>
-						<view></view>
-					</view>
-
-					<view class="popupContent">
-						<template v-if="popupItem.id !== 1">
-							<image src="@/static/wx.jpg" style="width:300rpx;height:300rpx;margin:40rpx 0;" mode="aspectFit" />
-						</template>
-						<template v-else>
-							<view class="notice">
-								<view>这是一个盲盒交友游戏，你不知道会抽到谁的纸条，也不知道你的纸条将会被谁抽到。</view>
-								<view>如果您需放入纸条，建议您认真填写，并留下有效的联系方式，以便喜欢您的人能联系到您。为了让信息更加真实，抽放纸条时需分享到朋友圈，以提高参与门槛。</view>
-								<view>
-									温馨提示：所有纸条均来自网友，均属发布者自愿行为，我们无法保证所有纸条内容的真实性，
-									<text style="color: #f00;">在添加好友时，请一定要仔细甄别，切勿轻易转账以防被骗</text>
-									，本平台不承担任何法律责任。
-								</view>
-								<view>
-									<view><text style="color: #f00;">红娘须知：</text></view>
-									<view>避免失联，建议您添加我们微信好友</view>
-									<view>平台首页点底部“联系我们”关注！！！</view>
-								</view>
+					</template>
+					<template v-if="showGuangGao">
+						<view class="popupTitle">
+							<u-icon name="close" color="#000" size="28" @click="popupShow = false;showGuangGao = false;"></u-icon>
+							<view style="text-align: center;">
+								<view class="title">广告服务</view>
 							</view>
-						</template>
-					</view>
+							<view></view>
+						</view>
+						<u-image width="100%" height="500rpx" mode="aspectFit" border-radius="20" :src="data.bottomImg" @click="copyWX(data.bottomWx)" ></u-image>
+					</template>
 				</view>
 			</u-popup>
 			
@@ -74,7 +85,9 @@
 									type="textarea"
 									maxlength="28"
 									v-model="user.text"
+									placeholder-style="color: #ccc;"
 									placeholder="你想说的话 (长度不超过28)"
+									:focus="true"
 									border="2" />
 							</view>
 							<view class="row">
@@ -221,14 +234,14 @@ export default {
 		this.isShare = true;
 		return {
 			imageUrl: this.data.shareImg,
-			title: this.data.shareText
+			title: this.data ? this.data.shareText : '恋爱盲盒-免费赠送爱情'
 		};
 	},
 	onShareAppMessage() {
 		return {
-			title: this.data.shareText,
+			title: this.data ? this.data.shareText : '恋爱盲盒-免费赠送爱情',
 			path: `/pages/index/index?id=${this.parameterId}`,
-			imageUrl: this.data.shareFriendImg,
+			imageUrl: this.data ? this.data.shareFriendImg : 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-f809b672-cc4f-4e9a-8799-4167a19755f7/6f0efbf0-03bb-452a-8ecf-6cfb438314e7.png',
 			success(res) {},
 			fail(res) {
 				uni.showToast({
@@ -247,6 +260,7 @@ export default {
 	},
 	data() {
 		return {
+			showGuangGao: false,
 			getWxCount: 0,
 			previewImg: "",
 			isShare: false,
@@ -306,7 +320,6 @@ export default {
 		uni.getStorage({
 		    key: 'getWxCount',
 		    success: function (res) {
-					console.log(res);
 		      _this.getWxCount = res.data.getWxCount;
 		    },
 				fail: function () {
@@ -318,6 +331,37 @@ export default {
 					});
 		    },
 		});
+		
+		// 获取当前日期
+		let data = new Date();
+		uni.getStorage({
+		    key: 'getDate',
+		    success: function (res) {
+		      if(res.data.getDate!==data.getDate()){
+						uni.setStorage({
+							key: 'getWxCount',
+							data: {
+								getWxCount: 0
+							}
+						});
+						uni.setStorage({
+							key: 'getDate',
+							data: {
+								getDate: data.getDate()
+							}
+						});
+					}
+		    },
+				fail: function () {
+					uni.setStorage({
+						key: 'getDate',
+						data: {
+							getDate: data.getDate()
+						}
+					});
+		    }
+		});
+		
 	},
 	methods: {
 		savaWx(){
@@ -399,10 +443,13 @@ export default {
 			});
 		},
 		clickTakeGender(){
+			let _this = this;
+			
 			if(!this.isShare){
 				this.shareShow = true;
 				return;
 			}
+			
 			if(this.takeGender === ""){
 				uni.showToast({
 				    title: '请选择性别',
@@ -519,6 +566,10 @@ export default {
 					return;
 				}
 			}
+			
+			uni.showLoading({
+				title: "投放中",
+			});
 		
 			uniCloud
 			  .callFunction({
@@ -529,13 +580,14 @@ export default {
 			    },
 			  })
 			  .then((res) => {
-					console.log(res);
+					uni.hideLoading();
 					if(res.result.isAdd){
 						uni.showToast({
 							title: '添加成功',
 							duration: 2000,
 						});
-						console.log(res.result);
+						_this.popupShow = true;
+						_this.showGuangGao = true;
 						// takeWxData
 						uni.getStorage({
 						    key: 'savaWxData',
@@ -588,28 +640,43 @@ export default {
 				this.popupCardShow = true;
 				return;
 			}
-			if(this.getWxCount>=2){
-				uni.showToast({
-				    title: '每日只能抽两次',
-				    duration: 2000,
-						icon: "error"
-				});
-				return;
-			}
-			if(index===2){
-				this.popupCard.type = 2;
-				this.popupCardShow = true;
-				return;
-			}
+			let date = new Date();
+			let _this = this;
+			uni.getStorage({
+			    key: 'getDate',
+			    success: function (res) {
+						console.log('getDate：',res);
+						console.log('getWxCount：',res.data.getDate);
+						console.log('getDate：',date.getDate());
+						if(_this.getWxCount>=2 && res.data.getDate === date.getDate()){
+							uni.showToast({
+								title: '每日只能抽两次',
+								duration: 2000,
+								icon: "error"
+							});
+							return;
+						}
+						
+						if(index===2){
+							_this.popupCard.type = 2;
+							_this.popupCardShow = true;
+							return;
+						}
+			    },
+					fail: function () {
+			    },
+			});
+
 		},
 		clickSwiper(index) {
-			if (this.data.banner[index].link !== '' && this.data.banner[index].link !== undefined) {
-				uni.navigateTo({
-					url: `/subpackages/webview/index?src=${this.data.banner[index].link}`,
-					fail: function(err) {
-						console.log(err);
-					}
-				});
+			if (this.data.banner[index].copyText !== '' && this.data.banner[index].copyText !== undefined) {
+				// uni.navigateTo({
+				// 	url: `/subpackages/webview/index?src=${this.data.banner[index].link}`,
+				// 	fail: function(err) {
+				// 		console.log(err);
+				// 	}
+				// });
+				this.copyWX(this.data.banner[index].copyText);
 			}
 		},
 		getInitData() {
@@ -638,13 +705,6 @@ export default {
 			wx.setClipboardData({
 				data: wxH,
 				success: function(res) {
-					wx.getClipboardData({
-						success: function(res) {
-							// wx.showToast({
-							// 	title: '复制成功'
-							// });
-						}
-					});
 				}
 			});
 			// #endif
@@ -689,7 +749,7 @@ page {
 	}
 }
 .content {
-	height: 100vh;
+	min-height: 100vh;
 	position: relative;
 	.tranPopup{
 		/deep/ .u-drawer-content{
@@ -706,7 +766,10 @@ page {
 		}
 	}
 	.bgImg {
-		height: 100vh;
+		width: 100%;
+		position: fixed;
+		top: 0;
+		left: 0;
 		background: url(https://vkceyugu.cdn.bspapp.com/VKCEYUGU-f809b672-cc4f-4e9a-8799-4167a19755f7/5ff87e9a-4782-4b09-b4bd-7f93222bcd22.png);
 		background-position: center;
 		background-size: 50%;
@@ -729,6 +792,7 @@ page {
 	}
 	.body {
 		padding: 0 20rpx;
+		padding-bottom: 20rpx;
 	}
 	.popupTitle {
 		display: flex;

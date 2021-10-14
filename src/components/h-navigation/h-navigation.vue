@@ -43,6 +43,14 @@ export default {
       } else if (i === 2) {
         url = "/pages/Matchmaker/index";
       }
+			let routes = getCurrentPages(); // 获取当前打开过的页面路由数组
+			let curRoute = routes[routes.length - 1].route //获取当前页面路由
+			if(i === 1){
+				curRoute = curRoute + '?id=' + this.parameterId
+			}
+			if(url==='/'+curRoute){
+				return;
+			}
       uni.redirectTo({
         url,
       });

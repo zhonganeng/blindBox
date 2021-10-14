@@ -1,5 +1,5 @@
 <template>
-  <view class="content" @click="copyWX('zhongaaneng')">
+  <view class="content" @click="copyWX('KevinKEE_')">
 		<view class="bgImg"></view>
 		<h-status-top :title="data.title" />
 		
@@ -81,13 +81,6 @@ export default {
 			wx.setClipboardData({
 				data: wxH,
 				success: function(res) {
-					wx.getClipboardData({
-						success: function(res) {
-							// wx.showToast({
-							// 	title: '复制成功'
-							// });
-						}
-					});
 				}
 			});
 			// #endif

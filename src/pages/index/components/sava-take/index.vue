@@ -1,6 +1,6 @@
 <template>
   <view class="content" :style="{
-		'backgroundImage': `url(${data.boxBgImg===''||data.boxBgImg===undefined ? '../../../static/hezi.png' : data.boxBgImg})`
+		'backgroundImage': `url(${data.boxBgImg===''||data.boxBgImg===undefined ? 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-f809b672-cc4f-4e9a-8799-4167a19755f7/137b85e9-e410-425c-8d69-8de69a80e0b5.png' : data.boxBgImg})`
 	}">
     <!-- <image src="@/static/nan.png"
            style="height: 160rpx;width:100%;borderRadius: 20rpx 20rpx 0 0;" />
@@ -25,11 +25,11 @@
       <button style="background-color: #000;color: #fff;width: 40%;height: 60rpx;line-height: 60rpx;"
 								size="mini"
 								hover-class="okBtn"
-                :ripple="true" @click="clickBtn(1)">放入1张纸条</button>
+                :ripple="true" @click="clickBtn(1)">放入纸条</button>
 			<button style="background-color: #000;color: #fff;width: 40%;height: 60rpx;line-height: 60rpx;margin-top: 30rpx;"
 								size="mini"
 								hover-class="okBtn"
-								:ripple="true" @click="clickBtn(2)">抽取1张纸条</button>
+								:ripple="true" @click="clickBtn(2)">抽取纸条</button>
     </view>
   </view>
 </template>

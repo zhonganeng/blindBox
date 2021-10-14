@@ -1,5 +1,5 @@
 {
-    "name" : "脱单盲盒",
+    "name" : "恋爱盲盒",
     "appid" : "__UNI__FF3F40A",
     "description" : "",
     "versionName" : "1.0.0",
@@ -58,7 +58,7 @@
         "appid" : "wx870d8d0f61cf7537",
         "setting" : {
             "urlCheck" : false,
-            "es6" : true,
+            "es6" : false,
             "minified" : true
         },
         "usingComponents" : true

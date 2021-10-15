@@ -1,25 +1,27 @@
 <template>
   <view class="content">
-		<h-status-top :title="data.title" />
-    <h-navigation :isSelect="0" />
-    <view class="body">
-      <switchTab @switchTab="switchTab" />
-			<view style="margin-top: 20rpx;">
-				<template v-if="showAb==1">
-					<template v-if="savaWxData.length>0">
-						<cardList :dataList="savaWxData" />
+		<h-hide-box>
+			<h-status-top :title="data.title" />
+			<h-navigation :isSelect="0" />
+			<view class="body">
+			  <switchTab @switchTab="switchTab" />
+				<view style="margin-top: 20rpx;">
+					<template v-if="showAb==1">
+						<template v-if="savaWxData.length>0">
+							<cardList :dataList="savaWxData" />
+						</template>
+						<view style="color: #999999;text-align: center;margin-top:40rpx;" v-else>我还没有放入过交友纸条</view>
 					</template>
-					<view style="color: #999999;text-align: center;margin-top:40rpx;" v-else>我还没有放入过交友纸条</view>
-				</template>
-				<template v-if="showAb==2">
-					<template v-if="takeWxData.length>0">
-						<cardList :dataList="takeWxData" />
+					<template v-if="showAb==2">
+						<template v-if="takeWxData.length>0">
+							<cardList :dataList="takeWxData" />
+						</template>
+						<view style="color: #999999;text-align: center;margin-top:40rpx;" v-else>我还没有抽取过交友纸条</view>
 					</template>
-					<view style="color: #999999;text-align: center;margin-top:40rpx;" v-else>我还没有抽取过交友纸条</view>
-				</template>
-				<u-image width="100%" height="500rpx" mode="aspectFit" border-radius="20" :src="data.bottomImg" @click="copyWX(data.bottomWx)" v-if="data.bottomImg"></u-image>
+					<u-image width="100%" height="500rpx" mode="aspectFit" border-radius="20" :src="data.bottomImg" @click="copyWX(data.bottomWx)" v-if="data.bottomImg"></u-image>
+				</view>
 			</view>
-		</view>
+		</h-hide-box>
   </view>
 </template>
 
@@ -56,11 +58,37 @@ export default {
 		    success: function (res) {
 					uni.hideLoading();
 					_this.savaWxData = res.data.filter(item=>Number(item.parameterId) ===	Number(_this.parameterId));
-		    }
+		    },
+				fail: function() {
+					uni.hideLoading();
+				}
 		});
 		
 	},
 	methods:{
+		copyWX(wxH) {
+			// #ifdef H5
+			const text = document.createElement('textarea');
+			text.value = wxH;
+			document.body.appendChild(text);
+			text.select();
+			document.execCommand('Copy');
+			text.remove();
+			//复制成功的回调函数
+			uni.showToast({
+				//提示
+				title: '复制成功'
+			});
+			// #endif
+		
+			// #ifdef MP-WEIXIN
+			wx.setClipboardData({
+				data: wxH,
+				success: function(res) {
+				}
+			});
+			// #endif
+		},
 		switchTab(index){
 			let _this = this;
 			this.showAb = index+1;
@@ -73,7 +101,10 @@ export default {
 				    success: function (res) {
 							uni.hideLoading();
 							_this.takeWxData = res.data.filter(item=>Number(item.parameterId) ===	Number(_this.parameterId));
-				    }
+				    },
+						fail: function() {
+							uni.hideLoading();
+						}
 				});
 			}
 		},

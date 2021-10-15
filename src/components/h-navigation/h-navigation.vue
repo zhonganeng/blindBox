@@ -1,17 +1,17 @@
 <template>
   <view class="content">
-    <view :class="{
-        select: isSelect==0
-      }"
-          @click="linkPage(0)">我的纸条</view>
-    <view :class="{
-        select: isSelect==1
-      }"
-          @click="linkPage(1)">抽个对象</view>
-    <view :class="{
-        select: isSelect==2
-      }"
-          @click="linkPage(2)">成为红娘</view>
+		<view :class="{
+				select: isSelect==0
+			}"
+					@click="linkPage(0)">我的纸条</view>
+		<view :class="{
+				select: isSelect==1
+			}"
+					@click="linkPage(1)">抽个对象</view>
+		<view :class="{
+				select: isSelect==2
+			}"
+					@click="linkPage(2)">成为红娘</view>
   </view>
 </template>
 

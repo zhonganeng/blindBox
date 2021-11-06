@@ -382,7 +382,7 @@ export default {
 			
 			  await this.$refs.rCanvas
 			    .drawImage({
-			      url: "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-f809b672-cc4f-4e9a-8799-4167a19755f7/0995ff24-4cbb-48b5-b964-04a5afaed8f4.png",
+			      url: "../../static/guanggao.png",
 			      x: 0,
 			      y: 0,
 			      w: 395,
@@ -411,6 +411,7 @@ export default {
 			        icon: "none",
 			      });
 			    });
+					
 				if(this.takeUser.text.length>0){
 					await this.$refs.rCanvas
 						.drawText({

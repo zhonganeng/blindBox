@@ -7,9 +7,11 @@
 6. 引导用户分享至朋友圈
 
 ## UI展示
-<img src="./readmeImg/2.jpg" width="300px" />
-<img src="./readmeImg/1.jpg" width="300px" />
-<img src="./readmeImg/3.jpg" width="300px" />
+<div style="display: flex;">
+  <img src="./readmeImg/2.jpg" width="300px" />
+  <img src="./readmeImg/1.jpg" width="300px" />
+  <img src="./readmeImg/3.jpg" width="300px" />
+</div>
 
 ## 技术栈：
 1. Vue2+uniApp（前端）
@@ -18,13 +20,13 @@
 4. 支持二开
 
 ## 使用说明：
-1、安装依赖包
+1. 安装依赖包
 
 ```js
-复制代码npm i
+  复制代码npm i
 ```
-2、在uniClound创建服务空间，并在“HBuilder”中进行关联，上传云开发相关依赖
-3、运行微信小程序
+2. 在uniClound创建服务空间，并在“HBuilder”中进行关联，上传云开发相关依赖；
+3. 运行微信小程序
 
 ## 在线体验
 <img src="./readmeImg/baibao.jpg" width="300px" />

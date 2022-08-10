@@ -21,7 +21,7 @@
 				"navigationBarTitleText": "摆摊赚钱"
 			}
 		}
-	],
+    ],
 	"subPackages": [
 		{
 			"root": "subpackages/webview",

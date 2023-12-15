@@ -30,6 +30,3 @@
 
 ## 在线体验
 <img src="./readmeImg/baibao.jpg" width="300px" />
-
-## 帮助
-vx: LifeWenXin
